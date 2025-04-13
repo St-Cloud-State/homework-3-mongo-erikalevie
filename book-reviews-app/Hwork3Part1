@@ -1,0 +1,84 @@
+Script started on 2025-04-13 06:32:20+00:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="122" LINES="23"]
+[0;32m@erikalevie [0m➜ [1;34m/workspaces/homework-3-mongo-erikalevie/book-reviews-app [0;36m([1;31mmain[0;36m) [0m$ mongo
+MongoDB shell version v3.6.8
+connecting to: mongodb://127.0.0.1:27017
+Implicit session: session { "id" : UUID("cfc3b529-cc0b-4804-bc0a-1b8f2571aa9f") }
+MongoDB server version: 3.6.8
+Server has startup warnings: 
+2025-04-13T05:57:23.376+0000 I CONTROL  [initandlisten] 
+2025-04-13T05:57:23.376+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2025-04-13T05:57:23.376+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2025-04-13T05:57:23.376+0000 I CONTROL  [initandlisten] 
+2025-04-13T05:57:23.376+0000 I CONTROL  [initandlisten] 
+2025-04-13T05:57:23.376+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2025-04-13T05:57:23.376+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2025-04-13T05:57:23.376+0000 I CONTROL  [initandlisten] 
+> use loanApplications[3G[Juse loanApplications[23G
+switched to db loanApplications
+> db.createCollection("applications")[3G[Jdb.createCollection("applications")[38G
+{
+	"ok" : 0,
+	"errmsg" : "a collection 'loanApplications.applications' already exists",
+	"code" : 48,
+	"codeName" : "NamespaceExists"
+}
+> db.applications.insertOne({[3G[Jdb.applications.insertOne({[30G
+...   name: "Charlie Brown",[5G[J  name: "Charlie Brown",[29G
+...   zipcode: "55402",[5G[J  zipcode: "55402",[24G
+...   status: "received",[5G[J  status: "received",[26G
+...   notes: [][5G[J  notes: [][16G
+... })[5G[J})[7G
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("67fb5a8e65c69c5a9f292699")
+}
+> db.applications.updateOne([3G[Jdb.applications.updateOne([29G
+...   { name: "Charlie Brown" },[5G[J  { name: "Charlie Brown" },[33G
+...   { $set: { status: "processing" } }[5G[J  { $set: { status: "processing" } }[41G
+... )[5G[J)[6G
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.applications.updateOne([3G[Jdb.applications.updateOne([29G
+...   { name: "Charlie Brown" },[5G[J  { name: "Charlie Brown" },[33G
+...   { $push: { notes: { phase: "personal details", message: "details verified" } } }[5G[J  { $push: { notes: { phase: "personal details", message: "details verified" } } }[87G
+... )[5G[J)[6G
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.applications.updateOne([3G[Jdb.applications.updateOne([29G
+...   { name: "Charlie Brown" },[5G[J  { name: "Charlie Brown" },[33G
+...   { $push: { notes: { phase: "credit check", message: "credit passed" } } }[5G[J  { $push: { notes: { phase: "credit check", message: "credit passed" } } }[80G
+... )[5G[J)[6G
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.applications.updateOne([3G[Jdb.applications.updateOne([29G
+...   { name: "Charlie Brown" },[5G[J  { name: "Charlie Brown" },[33G
+...   { [5G[J  { [9G
+...     $set: { status: "accepted" },[5G[J    $set: { status: "accepted" },[38G
+...     $push: { notes: { phase: "loan terms", message: "5% interest for 15 years" } }[5G[J    $push: { notes: { phase: "loan terms", message: "5% interest for 15 years" } }[87G
+...   }[5G[J  }[8G
+... )[5G[J)[6G
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.applications.findOne({ name: "Charlie Brown" })[3G[Jdb.applications.findOne({ name: "Charlie Brown" })[53G
+{
+	"_id" : ObjectId("67fb5a8e65c69c5a9f292699"),
+	"name" : "Charlie Brown",
+	"zipcode" : "55402",
+	"status" : "accepted",
+	"notes" : [
+		{
+			"phase" : "personal details",
+			"message" : "details verified"
+		},
+		{
+			"phase" : "credit check",
+			"message" : "credit passed"
+		},
+		{
+			"phase" : "loan terms",
+			"message" : "5% interest for 15 years"
+		}
+	]
+}
+> exit[3G[Jexit[7G
+bye
+[0;32m@erikalevie [0m➜ [1;34m/workspaces/homework-3-mongo-erikalevie/book-reviews-app [0;36m([1;31mmain[0;36m) [0m$ exit
+exit
+
+Script done on 2025-04-13 06:33:44+00:00 [COMMAND_EXIT_CODE="0"]
