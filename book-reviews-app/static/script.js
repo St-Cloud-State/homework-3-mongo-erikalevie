@@ -1,3 +1,5 @@
+console.log("JS loaded");
+
 async function fetchBooks() {
     const response = await fetch('/api/books');
     const data = await response.json();

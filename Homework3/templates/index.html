@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loan Application System</title>
+  <script defer src="/static/script.js"></script>
+</head>
+<body>
+
+  <h1>Acme Loan Application Portal</h1>
+
+  <h2>Submit New Application</h2>
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="text" id="zipcode" placeholder="Zip Code">
+  <button onclick="submitApplication()">Submit Application</button>
+  <p id="confirmation"></p>
+
+  <h2>Check Application Status</h2>
+  <input type="text" id="checkAppId" placeholder="Application Number">
+  <button onclick="checkStatus()">Check Status</button>
+  <p id="statusResult"></p>
+
+  <h2>Update Status by Application Number</h2>
+  <input type="text" id="updateAppId" placeholder="Application Number">
+  <select id="statusDropdown">
+    <option value="received">Received</option>
+    <option value="processing">Processing</option>
+    <option value="accepted">Accepted</option>
+    <option value="rejected">Rejected</option>
+  </select>
+  <button onclick="updateStatusById()">Update Status</button>
+
+  <h2>Update Status by Name (Optional)</h2>
+  <input type="text" id="statusName" placeholder="Name">
+  <input type="text" id="newStatus" placeholder="New Status">
+  <button onclick="updateStatus()">Update Status</button>
+
+  <h2>Add Note to Application</h2>
+  <input type="text" id="noteName" placeholder="Name">
+  <input type="text" id="subphase" placeholder="Subphase (e.g., credit check)">
+  <input type="text" id="noteMessage" placeholder="Note message">
+  <button onclick="addNote()">Add Note</button>
+
+  <h2>View Notes by Application Number</h2>
+  <input type="text" id="noteAppId" placeholder="Application Number">
+  <button onclick="viewNotesByAppId()">View Notes</button>
+  <pre id="noteResults"></pre>
+
+  <h2>View Application Info</h2>
+  <input type="text" id="viewName" placeholder="Name">
+  <button onclick="viewApplication()">View Application</button>
+  <pre id="result"></pre>
+
+</body>
+</html>
